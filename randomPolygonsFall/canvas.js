@@ -1,28 +1,47 @@
+// module aliases
+var Engine = Matter.Engine,
+    // Render = Matter.Render,
+    World = Matter.World,
+    Bodies = Matter.Bodies;
+
+// create an engine
+var engine = Engine.create();
+
+// create a renderer
+var render = Render.create({
+    element: document.body,
+    engine: engine
+});
+
+// create two boxes and a ground
+var boxA = Bodies.rectangle(400, 200, 80, 80);
+var boxB = Bodies.rectangle(450, 50, 80, 80);
+var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+// add all of the bodies to the world
+World.add(engine.world, [boxA, boxB, ground]);
+
+// run the engine
+Engine.run(engine);
+
+// run the renderer
+// Render.run(render);
+
+// set-up canvas 
 var canvas = document.querySelector("canvas");
-// console.log(canvas);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var c = canvas.getContext("2d");
 
-// ##################################
-// c.fillStyle = "rgba(255, 0,0,0.5)";
-// c.fillRect(200, 200, 100, 100);
-
-// c.beginPath();
-// c.moveTo(50, 300);
-// c.lineTo(300,100);
-// c.strokeStyle = "#3a26e1";
-// c.stroke();
-
+// obj
 c.beginPath();
-c.arc(300,300,50,0,Math.PI * 2, false);
-c.strokeStyle = "rgba(255, 0,0,0.5)";
+c.rect(20,20,150,100);
 c.stroke();
-
-
-var x= Math.random() * window.innerWidth;
-var y= Math.random() * window.innerHeight;
+c.fillStyle = "rgba(255, 0,0,0.5)";
+c.fillRect(200, 200, 100, 100);
 
 function animate(){
     requestAnimationFrame(animate);
+    boxA.stroke();
+    
 }
